@@ -1,9 +1,42 @@
 #include "Particle.h"
 
+Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition) : m_A(2, numPoints)
+{
+    m_ttl = TTL;
+    m_numPoints = numPoints;
+    m_radiansPerSec = static_cast<float>(rand() / RAND_MAX) * M_PI;
+    m_cartesianPlane.setCenter(0, 0);
+    m_cartesianPlane.setSize(target.getSize().x, -1 * target.getSize().y);
+}
 
 bool Particle::almostEqual(double a, double b, double eps)
 {
 	return fabs(a - b) < eps;
+}
+
+void Particle::draw(RenderTarget& target, RenderStates states) const
+{
+    
+}
+
+void Particle::update(float dt)
+{
+
+}
+
+void Particle::rotate(double theta)
+{
+
+}
+
+void Particle::scale(double c)
+{
+
+}
+
+void Particle::translate(double xShift, double yShift)
+{
+
 }
 
 void Particle::unitTests()
