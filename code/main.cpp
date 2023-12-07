@@ -7,10 +7,20 @@ using namespace Matrices;
 
 int main()
 {
+	RenderWindow window(VideoMode(1920, 1080), "window");
 	// Declare an instance of Engine
-	Engine engine;
+	//Engine engine;
 	// Start the engine
-	engine.run();
+	//engine.run();
+	Particle particle(window, 20, Vector2i(960, 540));
+	Particle particle2(window, 30, Vector2i(700, 327));
+	Particle particle3(window, 45, Vector2i(1020, 567));
+	window.draw(particle);
+	//window.draw(particle2);
+	//window.draw(particle3);
+	window.display();
+	particle.unitTests();
+	cin.get();
 	// Quit in the usual way when the engine is stopped
 	return 0;
 }
