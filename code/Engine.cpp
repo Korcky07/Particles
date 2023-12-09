@@ -24,10 +24,7 @@ void Engine::run()
 
 	while (m_Window.isOpen())
 	{
-		clock.restart();
-
-		time = clock.getElapsedTime();
-
+		time = clock.restart();
 		float dtAsSeconds = time.asSeconds();
 		
 		input();
@@ -55,7 +52,8 @@ void Engine::input()
 				{
 					int numPoints = rand() % (50 - 25 + 1);
 
-					Particle particle(m_Window, numPoints, Vector2i (event.mouseButton.x, event.mouseButton.y)); 
+					Particle particle(m_Window, numPoints, Vector2i (event.mouseButton.x, event.mouseButton.y));
+					m_particles.push_back(particle);
 
 				}
 				
@@ -92,6 +90,7 @@ void Engine::update(float dtAsSeconds)
 void Engine::draw()
 {
 	m_Window.clear();
+	//cout << "engine draw outside";
 	for (size_t i = 0; i < m_particles.size(); i++)
 	{
 		m_Window.draw(m_particles[i]);

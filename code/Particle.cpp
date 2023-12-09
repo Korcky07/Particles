@@ -1,4 +1,5 @@
 #include "Particle.h"
+#include <iostream>
 
 Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition) : m_A(2, numPoints)
 {
@@ -46,7 +47,6 @@ void Particle::draw(RenderTarget& target, RenderStates states) const
         lines[vertex].color = m_color2;
     }
     target.draw(lines);
-
 }
 
 void Particle::update(float dt)

@@ -12,7 +12,7 @@ int main()
 	Engine engine;
 	// Start the engine
 	engine.run();
-	cin.get();
+	//cin.get();
 	
 
 	// Quit in the usual way when the engine is stopped
