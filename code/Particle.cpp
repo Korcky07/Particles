@@ -40,12 +40,25 @@ void Particle::draw(RenderTarget& target, RenderStates states) const
 
 void Particle::update(float dt)
 {
+    m_ttl -= dt;
+    rotate(dt * m_radiansPerSec);
+    scale(SCALE);
+    float dx;
+    float dy;
+    dx = m_vx * dt;
+    m_vy -= G * dt;
+    dy = m_vy * dt;
+    translate(dx, dy);
 
 }
 
 void Particle::rotate(double theta)
 {
-
+    Vector2f temp = m_centerCoordinate;
+    translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
+    RotationMatrix R(theta);
+    m_A = R * m_A;
+    translate(temp.x, temp.y);
 }
 
 void Particle::scale(double c)
@@ -59,7 +72,10 @@ void Particle::scale(double c)
 
 void Particle::translate(double xShift, double yShift)
 {
-
+    TranslationMatrix T(xShift, yShift,m_A.getCols());
+    m_A = T + m_A;
+    m_centerCoordinate.x += xShift;
+    m_centerCoordinate.y += yShift;
 }
 
 void Particle::unitTests()

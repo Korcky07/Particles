@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PARTICLE_H
+#define PARTICLE_H
 #include "Matrices.h"
 #include <SFML/Graphics.hpp>
 
@@ -47,3 +48,4 @@ private:
     ///construct a TranslationMatrix T, add it to m_A
     void translate(double xShift, double yShift);
 };
+#endif

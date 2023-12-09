@@ -1,5 +1,6 @@
 #include "Engine.h"
 
+
 Engine::Engine()
 {
 	int pixelWidth = VideoMode::getDesktopMode().width;
@@ -15,7 +16,6 @@ void Engine::run()
 {
 	Clock clock;
 	Time time;
-	Particle particle;
 
 	cout << "Starting Particle unit tests..." << endl;
 	Particle p(m_Window, 4, { (int)m_Window.getSize().x / 2, (int)m_Window.getSize().y / 2 });
@@ -55,7 +55,8 @@ void Engine::input()
 				{
 					int numPoints = rand() % (50 - 25 + 1);
 
-					Particle(event.mouseButton);
+					Particle particle(m_Window, numPoints, Vector2i (event.mouseButton.x, event.mouseButton.y)); 
+
 				}
 				
 			}
@@ -73,11 +74,27 @@ void Engine::input()
 
 void Engine::update(float dtAsSeconds)
 {
-
+	for (auto it = m_particles.begin(); it != m_particles.end();) 
+	{
+		if (it->getTTL() > 0.0) 
+		{
+			it->update(dtAsSeconds);
+			++it; 
+		}
+		else 
+		{
+			it = m_particles.erase(it); 
+		}
+	}
 }
 
 
 void Engine::draw()
 {
-
+	m_Window.clear();
+	for (size_t i = 0; i < m_particles.size(); i++)
+	{
+		m_Window.draw(m_particles[i]);
+	}
+	m_Window.display();
 }
