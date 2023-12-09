@@ -16,6 +16,17 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
     m_vy = rand() % (MAX_VELOCITY + 1 - MIN_VELOCITY) + MIN_VELOCITY;
     m_color1 = Color::White;
     m_color2 = Color(rand() % 256, rand() % 256, rand() % 256);
+    float theta = (static_cast<float>(rand()) / RAND_MAX) * (M_PI / 2);
+    float dTheta = 2 * M_PI / (numPoints - 1);
+    for (int j = 0; j < numPoints; j++)
+    {
+        int r = rand() % 61 + 20;
+        float dx = r * cos(theta);
+        float dy = r * sin(theta);
+        m_A(0, j) = m_centerCoordinate.x + dx;
+        m_A(1, j) = m_centerCoordinate.y + dy;
+        theta += dTheta;
+    }
 }
 
 bool Particle::almostEqual(double a, double b, double eps)

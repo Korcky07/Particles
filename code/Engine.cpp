@@ -8,7 +8,7 @@ Engine::Engine()
 
 	VideoMode vm(pixelWidth, pixelHeight);
 
-	RenderWindow m_Window(vm, "Mandelbrot", Style::Default);
+	m_Window.create(vm, "Mandelbrot", Style::Default);
 }
 
 
